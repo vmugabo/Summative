@@ -1,0 +1,85 @@
+steps:
+  # Build the container image and push it to Container Registry.
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-f",
+        "API/Dockerfile",
+        "-t",
+        "gcr.io/$PROJECT_ID/api-service:$BUILD_ID",
+        ".",
+      ]
+
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/$PROJECT_ID/api-service:$BUILD_ID"]
+
+  # Deploy the image to Cloud Run.
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "run"
+      - "deploy"
+      - "api-service"
+      - "--image"
+      - "gcr.io/$PROJECT_ID/api-service:$BUILD_ID"
+      - "--region"
+      - "us-central1"
+      - "--platform"
+      - "managed"
+      - "--allow-unauthenticated"
+
+  # Resolve Cloud Run service URL and write it to the workspace for tests.
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk:slim"
+    id: "resolve-cloudrun-url"
+    entrypoint: "bash"
+    args:
+      - -c
+      - |
+        set -euo pipefail
+        echo "Resolving Cloud Run service URL for api-service..."
+        url=$(gcloud run services describe api-service --region us-central1 --platform managed --format='value(status.url)' || true)
+        if [ -z "$url" ]; then
+          echo "ERROR: Could not resolve Cloud Run URL for service 'api-service' in us-central1." >&2
+          echo "Check deployment logs or permissions for Cloud Build service account." >&2
+          echo "" > /workspace/cloudrun_resolve.log
+          # Exit to fail the build when URL cannot be resolved.
+          exit 1
+        else
+          echo "$url" > /workspace/CLOUDRUN_URL
+          echo "Resolved Cloud Run URL: $url" > /workspace/cloudrun_resolve.log
+        fi
+
+  # Run hosted integration tests against the published site using the Cloud SDK image.
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk:slim"
+    id: "run-hosted-tests"
+    entrypoint: "bash"
+    args:
+      - -c
+      - |
+        set -euo pipefail
+        # Install Python3 and pip in the slim Cloud SDK image if missing.
+        if ! command -v python3 >/dev/null 2>&1; then
+          apt-get update -y && apt-get install -y python3 python3-pip && rm -rf /var/lib/apt/lists/*
+        fi
+        python3 -m pip install --upgrade pip
+        pip3 install pytest requests
+        # If the resolver wrote a CLOUDRUN_URL file, export it for the tests to use.
+        if [ -f /workspace/CLOUDRUN_URL ]; then
+          export CLOUDRUN_URL=$(cat /workspace/CLOUDRUN_URL | tr -d '\n' || true)
+          if [ -n "$CLOUDRUN_URL" ]; then
+            echo "Using resolved CLOUDRUN_URL=$CLOUDRUN_URL"
+          else
+            echo "CLOUDRUN_URL file empty; tests that require Cloud Run URL may skip."
+          fi
+        fi
+        # Run hosted tests that call the Firebase-hosted URL and optionally Cloud Run.
+        pytest -q API/tests/test_hosted_api_examples.py API/tests/test_hosted_swagger_ui.py API/tests/test_cloudrun_api_examples.py
+
+images:
+  - "gcr.io/$PROJECT_ID/api-service:$BUILD_ID"
+
+options:
+  substitutionOption: "ALLOW_LOOSE"
+
+substitutions:
+  _SERVICE: "api-service"

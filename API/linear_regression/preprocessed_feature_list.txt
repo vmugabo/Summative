@@ -1,0 +1,28 @@
+Year
+Infant_deaths
+Under_five_deaths
+Adult_mortality
+Alcohol_consumption
+Hepatitis_B
+Measles
+BMI
+Polio
+Diphtheria
+Incidents_HIV
+GDP_per_capita
+Population_mln
+Thinness_ten_nineteen_years
+Thinness_five_nine_years
+Schooling
+Economy_status_Developed
+Economy_status_Developing
+Life_expectancy
+Region_Africa
+Region_Asia
+Region_Central America and Caribbean
+Region_European Union
+Region_Middle East
+Region_North America
+Region_Oceania
+Region_Rest of Europe
+Region_South America

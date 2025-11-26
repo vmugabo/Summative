@@ -1,0 +1,19 @@
+{
+  "Country": "Testlandia",
+  "Year": 2015,
+  "Adult_mortality": 60.5,
+  "Under_five_deaths": 3.2,
+  "Infant_deaths": 2.1,
+  "Schooling": 12.0,
+  "Polio": 98.0,
+  "Diphtheria": 97.0,
+  "BMI": 27.5,
+  "GDP_per_capita": 40000.0,
+  "Incidents_HIV": 0.05,
+  "Economy_status_Developed": 1.0,
+  "Economy_status_Developing": 0.0,
+  "Measles": 5.0,
+  "Thinness_ten_nineteen_years": 1.2,
+  "Thinness_five_nine_years": 0.8,
+  "Hepatitis_B": 95.0
+}

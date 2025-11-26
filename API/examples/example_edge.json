@@ -1,0 +1,19 @@
+{
+  "Country": "EdgeCaseLand",
+  "Year": 2000,
+  "Adult_mortality": 700.0,
+  "Under_five_deaths": 224.9,
+  "Infant_deaths": 138.1,
+  "Schooling": 0.5,
+  "Polio": 0.0,
+  "Diphtheria": 0.0,
+  "BMI": 12.0,
+  "GDP_per_capita": 100.0,
+  "Incidents_HIV": 22.0,
+  "Economy_status_Developed": 0.0,
+  "Economy_status_Developing": 1.0,
+  "Measles": 999.0,
+  "Thinness_ten_nineteen_years": 29.9,
+  "Thinness_five_nine_years": 29.9,
+  "Hepatitis_B": 0.0
+}

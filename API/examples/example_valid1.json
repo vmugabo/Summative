@@ -1,0 +1,19 @@
+{
+  "Country": "Afghanistan",
+  "Year": 2010,
+  "Adult_mortality": 200.0,
+  "Under_five_deaths": 10.0,
+  "Infant_deaths": 5.0,
+  "Schooling": 8.0,
+  "Polio": 90.0,
+  "Diphtheria": 90.0,
+  "BMI": 25.0,
+  "GDP_per_capita": 5000.0,
+  "Incidents_HIV": 0.1,
+  "Economy_status_Developed": 0.0,
+  "Economy_status_Developing": 1.0,
+  "Measles": 20.0,
+  "Thinness_ten_nineteen_years": 5.0,
+  "Thinness_five_nine_years": 5.0,
+  "Hepatitis_B": 80.0
+}

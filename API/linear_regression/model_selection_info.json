@@ -1,0 +1,60 @@
+{
+  "target": "Life_expectancy",
+  "features": [
+    "Adult_mortality",
+    "Under_five_deaths",
+    "Infant_deaths",
+    "Schooling",
+    "Polio",
+    "Diphtheria",
+    "BMI",
+    "GDP_per_capita",
+    "Incidents_HIV",
+    "Economy_status_Developed",
+    "Economy_status_Developing",
+    "Measles",
+    "Thinness_ten_nineteen_years",
+    "Thinness_five_nine_years",
+    "Hepatitis_B"
+  ],
+  "results_summary": {
+    "LinearRegression": {
+      "rmse": 1.3713051683347133,
+      "r2": 0.97734123885331,
+      "mae": 1.0883187785939816
+    },
+    "DecisionTree": {
+      "3": {
+        "rmse": 2.3872111457562397,
+        "r2": 0.9313327582694512,
+        "mae": 1.8654779922932632
+      },
+      "5": {
+        "rmse": 1.515742706019338,
+        "r2": 0.9723166330283517,
+        "mae": 1.2073714769728436
+      },
+      "7": {
+        "rmse": 1.1520424401574345,
+        "r2": 0.9840079222521633,
+        "mae": 0.9117575243489284
+      },
+      "9": {
+        "rmse": 0.8646602075183862,
+        "r2": 0.9909913672771838,
+        "mae": 0.6512121156400773
+      },
+      "None": {
+        "rmse": 0.7795040263209752,
+        "r2": 0.9926784225428689,
+        "mae": 0.5380453752181503
+      }
+    },
+    "RandomForest": {
+      "rmse": 0.5119137054207062,
+      "r2": 0.9968423684712843,
+      "mae": 0.38436910994764684
+    }
+  },
+  "best_model_by_rmse": "RandomForest"
+}

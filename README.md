@@ -1,6 +1,8 @@
 # Life Expectancy Prediction (ML Summative)
 
-[Watch Live Demo Video]
+## [Watch Live Demo Video]
+
+https://youtu.be/AIB4BZDZfPE
 
 This predicts country-level life expectancy from public health and socio-economic mix features.
 

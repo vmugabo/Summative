@@ -36,3 +36,10 @@ included in the repository at `linear_regression/Life-Expectancy-Data-Updated.cs
 Endpoints
 
 - POST `/api/predict` — Accepts a JSON object with feature names matching the selected feature list and returns a prediction JSON:
+
+## To run the Flutter App
+
+git clone git@github.com:vmugabo/Summative.git
+cd Summative
+flutter pub get
+flutter run -d <Device Name>

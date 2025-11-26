@@ -39,7 +39,7 @@ Endpoints
 
 ## To run the Flutter App
 
-git clone git@github.com:vmugabo/Summative.git
+git clone https://github.com/vmugabo/Summative.git
 cd Summative
 flutter pub get
 flutter run -d <Device Name>
